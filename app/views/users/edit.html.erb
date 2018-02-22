@@ -1,0 +1,24 @@
+<h2>Update <%= @user.first_name %> <%= @user.last_name %>'s' Information</h2>
+<form action="<%= user_path @user %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="patch">
+
+  <label>First Name</label>
+  <input type="text" name="user[first_name]" value='<%= @user.first_name %>'><br><br>
+
+  <label>Last Name</label>
+  <input type="text" name="user[last_name]" value='<%= @user.last_name %>'><br><br>
+
+  <label>Location</label>
+  <input type="text" name="user[location]" value='<%= @user.location %>'>
+  <select name="user[state]">
+    <option value="<%= @user.state %>"><%= @user.state %></option>
+    <% states.each do |state| %>
+      <% unless state == @user.state %>
+        <option value="<%= state %>"><%= state %></option>
+      <% end %>
+    <% end %>
+  </select><br><br>
+
+  <input type="submit" value="Update">
+</form>

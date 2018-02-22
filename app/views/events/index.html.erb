@@ -1,0 +1,84 @@
+<h2>Welcome, <%= current_user.first_name %></h2>
+
+<h4>Here are some events in your state</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Location</th>
+    <th>Host</th>
+    <th>Action/Status</th>
+  </tr>
+  <% @events_in_my_state.each do |event| %>
+    <tr>
+      <td><a href="<%= event_path event %>"><%= event.name %></a></td>
+      <td><%= event.date %></td>
+      <td><%= event.location %></td>
+      <td><%= event.user.first_name %></td>
+      <td>
+        <% if event.users.include? current_user %>
+          Joining <a href="<%= attendee_path event.id %>" data-method='delete'>Cancel</a>
+        <% else %>
+          <a href="<%= attendees_path event.id %>" data-method='post'>Join</a>
+        <% end %>
+        <% if event.user == current_user %>
+          <a href="<%= edit_event_path event.id %>">Edit</a>
+          <a href="<%= event_path event.id %>" data-method='delete'>Delete</a>
+        <% end%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h4>Here are some events in other states</h4>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Location</th>
+    <th>State</th>
+    <th>Host</th>
+    <th>Action/Status</th>
+  </tr>
+  <% @events_not_in_my_state.each do |event| %>
+    <tr>
+      <td><a href="<%= event_path event %>"><%= event.name %></a></td>
+      <td><%= event.date %></td>
+      <td><%= event.location %></td>
+          <td><%= event.state %></td>
+      <td><%= event.user.first_name %></td>
+      <td>
+        <% if event.users.include? current_user %>
+          Joining <a href="<%= attendee_path event.id %>" data-method='delete'>Cancel</a>
+        <% else %>
+          <a href="<%= attendees_path event.id %>" data-method='post'>Join</a>
+        <% end %>
+        <% if event.user == current_user %>
+          <a href="<%= edit_event_path event.id %>">Edit</a>
+          <a href="<%= event_path event.id %>" data-method='delete'>Delete</a>
+        <% end%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Add Event</h3>
+<form action="<%= events_path %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Name</label>
+  <input type="text" name="event[name]"><br><br>
+
+  <label>Date</label>
+  <input type="date" name="event[date]"><br><br>
+
+  <label>Location</label>
+  <input type="text" name="event[location]">
+  <select name="event[state]">
+    <% states.each do |state| %>
+      <option value="<%= state %>"><%= state %></option>
+    <% end %>
+  </select><br><br>
+
+  <input type="submit" value="Add Event">
+</form>

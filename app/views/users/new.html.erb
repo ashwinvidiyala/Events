@@ -1,0 +1,42 @@
+<h2>Registration</h2>
+<form action="<%= users_path %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>First Name</label>
+  <input type="text" name="user[first_name]"><br><br>
+
+  <label>Last Name</label>
+  <input type="text" name="user[last_name]"><br><br>
+
+  <label>Email</label>
+  <input type="email" name="user[email]"><br><br>
+
+  <label>Location</label>
+  <input type="text" name="user[location]">
+  <select name="user[state]">
+    <% states.each do |state| %>
+      <option value="<%= state %>"><%= state %></option>
+    <% end %>
+  </select><br><br>
+
+  <label>Password</label>
+  <input type="password" name="user[password]"><br><br>
+
+  <label>Confirm Password</label>
+  <input type="password" name="user[password_confirmation]"><br><br>
+
+  <input type="submit" value="Register">
+</form>
+
+<h2>Login</h2>
+<form action="<%= sessions_path %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>Email</label>
+  <input type="email" name="email"><br><br>
+
+  <label>Password</label>
+  <input type="password" name="password"><br><br>
+
+  <input type="submit" value="Login">
+</form>
