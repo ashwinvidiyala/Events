@@ -1,6 +1,6 @@
 # Events
 
-Rails app where a user can create/edit/delete and join events. The logged user can also put comments on the discussion board per event.
+Rails app where a user can create/edit/delete and join events. The logged user can also put comments on each event's discussion board. Built on Rails 4.
 
 ## Features
 
