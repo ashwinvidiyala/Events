@@ -7,19 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if flash[:errors] %>
-  <% flash[:errors].each do |error| %>
-    <p class='error' ><%= error %></p>
-  <% end %>
-<% end %>
-
-<% if current_user %>
-  <a href="<%= logout_path %>" data-method='delete'>Logout</a>
-  <a href="<%= events_path %>">Events Dashboard</a>
-  <a href="<%= edit_user_path current_user %>">Edit My Profile</a>
-<% end %>
-
-<%= yield %>
-
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 mx-md-auto text-center">
+        <%= render 'partials/navbar' %>
+        <%= render 'partials/errors' %>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

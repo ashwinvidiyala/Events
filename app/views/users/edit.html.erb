@@ -1,4 +1,4 @@
-<h2>Update <%= @user.first_name %> <%= @user.last_name %>'s' Information</h2>
+<h3 class='text-primary'>Update <%= @user.first_name %> <%= @user.last_name %>'s Information</h2>
 <form action="<%= user_path @user %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="patch">
@@ -20,5 +20,5 @@
     <% end %>
   </select><br><br>
 
-  <input type="submit" value="Update">
+  <input class='btn btn-primary' type="submit" value="Update">
 </form>

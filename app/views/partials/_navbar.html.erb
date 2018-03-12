@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="<%= users_path %>">Events</a>
+      <% if current_user %>
+        <a href="<%= events_path %>">Events Dashboard</a>
+        <a href="<%= edit_user_path current_user %>">Edit My Profile</a>
+        <a href="<%= logout_path %>" data-method='delete'>Logout</a>
+      <% else %>
+        <a href="<%= new_user_path %>">Login</a>
+        <a href="<%= new_user_path %>">Register</a>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,68 +1,73 @@
 <h2>Welcome, <%= current_user.first_name %></h2>
 
-<h4>Here are some events in your state</h4>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Location</th>
-    <th>Host</th>
-    <th>Action/Status</th>
-  </tr>
-  <% @events_in_my_state.each do |event| %>
+<h4 class='text-primary'>Here are some events in your state</h4>
+<div class="table-responsive">
+  <table class='table table-hover table-bordered'>
     <tr>
-      <td><a href="<%= event_path event %>"><%= event.name %></a></td>
-      <td><%= event.date %></td>
-      <td><%= event.location %></td>
-      <td><%= event.user.first_name %></td>
-      <td>
-        <% if event.users.include? current_user %>
-          Joining <a href="<%= attendee_path event.id %>" data-method='delete'>Cancel</a>
-        <% else %>
-          <a href="<%= attendees_path event.id %>" data-method='post'>Join</a>
-        <% end %>
-        <% if event.user == current_user %>
-          <a href="<%= edit_event_path event.id %>">Edit</a>
-          <a href="<%= event_path event.id %>" data-method='delete'>Delete</a>
-        <% end%>
-      </td>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Host</th>
+      <th>Action/Status</th>
     </tr>
-  <% end %>
-</table>
+    <% @events_in_my_state.each do |event| %>
+      <tr>
+        <td><a href="<%= event_path event %>"><%= event.name %></a></td>
+        <td><%= event.date %></td>
+        <td><%= event.location %></td>
+        <td><%= event.user.first_name %></td>
+        <td>
+          <% if event.users.include? current_user %>
+            Joining <a href="<%= attendee_path event.id %>" data-method='delete'>Cancel</a>
+          <% else %>
+            <a href="<%= attendees_path event.id %>" data-method='post'>Join</a>
+          <% end %>
+          <% if event.user == current_user %>
+            <a href="<%= edit_event_path event.id %>">Edit</a>
+            <a href="<%= event_path event.id %>" data-method='delete'>Delete</a>
+          <% end%>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
-<h4>Here are some events in other states</h4>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Location</th>
-    <th>State</th>
-    <th>Host</th>
-    <th>Action/Status</th>
-  </tr>
-  <% @events_not_in_my_state.each do |event| %>
+
+<h4 class='text-primary'>Here are some events in other states</h4>
+<div class="table-responsive">
+  <table class='table table-hover table-bordered'>
     <tr>
-      <td><a href="<%= event_path event %>"><%= event.name %></a></td>
-      <td><%= event.date %></td>
-      <td><%= event.location %></td>
-          <td><%= event.state %></td>
-      <td><%= event.user.first_name %></td>
-      <td>
-        <% if event.users.include? current_user %>
-          Joining <a href="<%= attendee_path event.id %>" data-method='delete'>Cancel</a>
-        <% else %>
-          <a href="<%= attendees_path event.id %>" data-method='post'>Join</a>
-        <% end %>
-        <% if event.user == current_user %>
-          <a href="<%= edit_event_path event.id %>">Edit</a>
-          <a href="<%= event_path event.id %>" data-method='delete'>Delete</a>
-        <% end%>
-      </td>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>State</th>
+      <th>Host</th>
+      <th>Action/Status</th>
     </tr>
-  <% end %>
-</table>
+    <% @events_not_in_my_state.each do |event| %>
+      <tr>
+        <td><a href="<%= event_path event %>"><%= event.name %></a></td>
+        <td><%= event.date %></td>
+        <td><%= event.location %></td>
+            <td><%= event.state %></td>
+        <td><%= event.user.first_name %></td>
+        <td>
+          <% if event.users.include? current_user %>
+            Joining <a href="<%= attendee_path event.id %>" data-method='delete'>Cancel</a>
+          <% else %>
+            <a href="<%= attendees_path event.id %>" data-method='post'>Join</a>
+          <% end %>
+          <% if event.user == current_user %>
+            <a href="<%= edit_event_path event.id %>">Edit</a>
+            <a href="<%= event_path event.id %>" data-method='delete'>Delete</a>
+          <% end%>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
-<h3>Add Event</h3>
+<h3 class='text-primary'>Add Event</h3>
 <form action="<%= events_path %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
@@ -80,5 +85,5 @@
     <% end %>
   </select><br><br>
 
-  <input type="submit" value="Add Event">
+  <input class='btn btn-primary' type="submit" value="Add Event">
 </form>

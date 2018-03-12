@@ -1,9 +1,11 @@
-<h3><%= @event.name %></h3>
+<h3 class='text-primary'><%= @event.name %></h3>
 <p>Host: <%= @event.user.first_name %> <%= @event.user.last_name %></p>
 <p>Date: <%= @event.date %></p>
 <p>Location: <%= @event.location %> <%= @event.state %></p>
-<p>People who are joining the event: <%= @number_of_people_joining %></p>
-<table>
+<p class='h5'>Number of people attending: <%= @number_of_people_joining %></p>
+
+<h3 class='text-primary'>Attendees</h3>
+<table class='table table-hover table-bordered'>
   <tr>
     <th>Name</th>
     <th>Location</th>
@@ -18,18 +20,18 @@
   <% end %>
 </table>
 
-<h3>Discussion About This Event</h3>
+<h3 class='text-primary'>Discussion About This Event</h3>
 
 <% @comments.each do |comment| %>
-  <%= comment.user.first_name %> says: <%= comment.content %>
+  <span class='text-primary'><%= comment.user.first_name %></span> says: <%= comment.content %>
   <hr>
 <% end %>
 
 <form action="<%= comments_path @event %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <label>Add Comment</label><br>
+  <label class='h5 text-primary'>Add Comment</label><br>
   <textarea name='comment[content]' rows='5' cols='35' ></textarea><br><br>
 
-  <input type="submit" value="Submit Comment">
+  <input class='btn btn-primary' type="submit" value="Submit Comment">
 </form>
